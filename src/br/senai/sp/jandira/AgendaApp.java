@@ -15,23 +15,23 @@ public class AgendaApp {
 	public static void main(String[] args) {
 		
 		
-		Especialidade especialidade = new Especialidade();
+		Especialidade especialidade = new Especialidade("");
 		especialidade.setNome("Cardiologia");
 		especialidade.setDescricao("Mexe com o coração");
 		
-		Especialidade especialidadeDois = new Especialidade();
+		Especialidade especialidadeDois = new Especialidade("");
 		especialidadeDois.setNome("Otorrinolaringologia");
 		especialidadeDois.setDescricao("Cuidado do ouvido, garganta...");
 
-		Especialidade especialidadeTres = new Especialidade();
+		Especialidade especialidadeTres = new Especialidade("");
 		especialidadeTres.setNome("Gastroenterologia");
 		especialidadeTres.setDescricao("Mexe com o sistema gastroentestinal");
 		
-		Especialidade especialidadeQuatro = new Especialidade();
+		Especialidade especialidadeQuatro = new Especialidade("");
 		especialidadeQuatro.setNome("Fisioterapia");
 		especialidadeQuatro.setDescricao("Reabilitação de membros danificados por traumas");
 		
-		Especialidade especialidadeCinco = new Especialidade();
+		Especialidade especialidadeCinco = new Especialidade("");
 		especialidadeCinco.setNome("Clínico Geral");
 		especialidadeCinco.setDescricao("Aborda o quadro geral da saude");
 		
