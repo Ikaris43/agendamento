@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import br.senai.sp.jandira.AgendaApp;
+import br.senai.sp.jandira.dao.EspecialidadeDAO;
 import br.senai.sp.jandira.model.Especialidade;
 import br.senai.sp.jandira.model.PlanoDeSaude;
 
@@ -21,15 +22,43 @@ public class TesteObjetos {
 
         Especialidade e3 = new Especialidade();
         e3.setNome("Qualquer coisa!!");
-        
+        e3.setDescricao("Mania de jogar");
+
         Especialidade e4 = new Especialidade();
         e4.setNome("Mania");
+        
+         
+        
+        EspecialidadeDAO.gravar(e1);
+        EspecialidadeDAO.gravar(e2);
+//        System.out.println("Tamanho--->" + EspecialidadeDAO.getEspecialidades().size());
+        
+        
+        EspecialidadeDAO.gravar(e3);
+        EspecialidadeDAO.gravar(e4);
+//        System.out.println("Tamanho--->" + EspecialidadeDAO.getEspecialidades().size());
+        
+//        System.out.println(EspecialidadeDAO.getEspecialidade(120).getNome());
+        
+        
 
         ArrayList<Especialidade> especialidades = new ArrayList<>();
         especialidades.add(e1);
         especialidades.add(e2);
         especialidades.add(e3);
         System.out.println(especialidades.size());
+        
+        EspecialidadeDAO.excluir(102);
+        EspecialidadeDAO.excluir(101);
+        System.out.println("Tamanho--->" + EspecialidadeDAO.getEspecialidades().size());
+        EspecialidadeDAO.excluir(103);
+        System.out.println("Tamanho---> " + EspecialidadeDAO.getEspecialidades().size());
+        
+        Especialidade correta = new Especialidade("Dermatologia", "Parte");
+        correta.setCodigo(e4.getCodigo());
+        EspecialidadeDAO.atualizar(correta);
+        
+        System.out.println(EspecialidadeDAO.getEspecialidade(103).getNome());
 
         int i = 0;
 
@@ -68,14 +97,12 @@ public class TesteObjetos {
         PlanoDeSaude ruby4 = new PlanoDeSaude();
 
 //        AgendaApp.main(args);
-
         System.out.println("---" + PlanoDeSaude.getQuantidade());
         System.out.println("total= " + Especialidade.getContador());
-        System.out.println(e1.getCodigo()+ " - " + e1.getNome());
-        System.out.println(e2.getCodigo()+ " - " + e2.getNome());
-        System.out.println(e3.getCodigo()+ " - " + e3.getNome());
-        System.out.println(e4.getCodigo()+ " - " + e4.getNome());
-        
+        System.out.println(e1.getCodigo() + " - " + e1.getNome());
+        System.out.println(e2.getCodigo() + " - " + e2.getNome());
+        System.out.println(e3.getCodigo() + " - " + e3.getNome());
+        System.out.println(e4.getCodigo() + " - " + e4.getNome());
 
     }
 
