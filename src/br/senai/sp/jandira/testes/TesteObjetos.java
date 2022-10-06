@@ -12,6 +12,40 @@ public class TesteObjetos {
 
     public static void main(String[] args) {
 
+        int[] a = {6, 9, 12, 37, 46};
+        int[] b = new int[4];
+        b[0] = 55;
+        b[1] = 15;
+        b[2] = 12;
+        b[3] = 25;
+
+        int[][] c = {
+            {4, 6, 5},
+            {1, 15, 2},
+            {5, 510, 8}
+        };
+
+        String[][] quitanda = {
+            {"Banana", "Maçã", "Uva", "Morango"},
+            {"Alfance", "Couve", "Pepino", "Salsinha", "Pimentão", "Brócolis"},
+            {"Abacate", "Tomate", "Jiló", "Abobrinha"},};
+
+                System.out.println(
+                quitanda[1][4]
+        );
+
+                System.out.println(
+                "--------------------------------------"
+        );
+        
+        System.out.println(
+                c[2][1]
+        );
+        
+        System.out.println(
+                "--------------------------------------"
+        );
+
         Especialidade e1 = new Especialidade("");
         e1.setNome("Cardiologia");
         e1.setDescricao("Não deixa ter um ataque");
@@ -26,38 +60,32 @@ public class TesteObjetos {
 
         Especialidade e4 = new Especialidade();
         e4.setNome("Mania");
-        
-         
-        
+
         EspecialidadeDAO.gravar(e1);
         EspecialidadeDAO.gravar(e2);
 //        System.out.println("Tamanho--->" + EspecialidadeDAO.getEspecialidades().size());
-        
-        
+
         EspecialidadeDAO.gravar(e3);
         EspecialidadeDAO.gravar(e4);
 //        System.out.println("Tamanho--->" + EspecialidadeDAO.getEspecialidades().size());
-        
-//        System.out.println(EspecialidadeDAO.getEspecialidade(120).getNome());
-        
-        
 
+//        System.out.println(EspecialidadeDAO.getEspecialidade(120).getNome());
         ArrayList<Especialidade> especialidades = new ArrayList<>();
         especialidades.add(e1);
         especialidades.add(e2);
         especialidades.add(e3);
         System.out.println(especialidades.size());
-        
+
         EspecialidadeDAO.excluir(102);
         EspecialidadeDAO.excluir(101);
         System.out.println("Tamanho--->" + EspecialidadeDAO.getEspecialidades().size());
         EspecialidadeDAO.excluir(103);
         System.out.println("Tamanho---> " + EspecialidadeDAO.getEspecialidades().size());
-        
+
         Especialidade correta = new Especialidade("Dermatologia", "Parte");
         correta.setCodigo(e4.getCodigo());
         EspecialidadeDAO.atualizar(correta);
-        
+
         System.out.println(EspecialidadeDAO.getEspecialidade(103).getNome());
 
         int i = 0;

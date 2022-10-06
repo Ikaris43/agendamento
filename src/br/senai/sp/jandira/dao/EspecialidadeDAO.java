@@ -40,11 +40,21 @@ public class EspecialidadeDAO {
         }
     }
     
-    
-    
-    
     public static void gravar(Especialidade e) {
         especialidades.add(e);
+    }
+    
+    //Criar uma lista inicial de especialidades
+    public static void criarListaDeEspecialidaddes(){
+        Especialidade e1 = new Especialidade("Geral", "Generalizando");
+        Especialidade e2 = new Especialidade("Geral2", "Generalizando2");
+        Especialidade e3 = new Especialidade("Geral3", "Generalizando3");
+        Especialidade e4 = new Especialidade("Geral4", "Generalizando4");
+        
+        especialidades.add(e1);
+        especialidades.add(e2);
+        especialidades.add(e3);
+        especialidades.add(e4);
     }
     
 }
