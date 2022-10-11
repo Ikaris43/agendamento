@@ -3,6 +3,7 @@ package br.senai.sp.jandira.dao;
 
 import br.senai.sp.jandira.model.Especialidade;
 import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 
 public class EspecialidadeDAO {
@@ -12,6 +13,23 @@ public class EspecialidadeDAO {
     public static ArrayList<Especialidade> getEspecialidades() {
         return especialidades;
     }
+    
+    public static DefaultTableModel getEspecialidadesModel() {
+        
+        String[] titulos = {"Código", "Nome da Especialidade", "Descrição"};
+        String[][] dados = new String[especialidades.size()][3];
+        
+        int i = 0;
+        for (Especialidade e : especialidades) {
+            dados[i][0] = e.getCodigo().toString();
+            dados[i][1] = e.getNome();
+            dados[i][2] = e.getDescricao();
+            i++;
+        }
+        DefaultTableModel model = new DefaultTableModel(dados, titulos);
+        return model;
+    }
+    
     
     public static Especialidade getEspecialidade(Integer codigo) {
         for(Especialidade e : especialidades) {

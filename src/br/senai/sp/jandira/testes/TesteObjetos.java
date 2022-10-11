@@ -28,7 +28,7 @@ public class TesteObjetos {
         String[][] quitanda = {
             {"Banana", "Maçã", "Uva", "Morango"},
             {"Alfance", "Couve", "Pepino", "Salsinha", "Pimentão", "Brócolis"},
-            {"Abacate", "Tomate", "Jiló", "Abobrinha"},};
+            {"Abacate", "Tomate", "Jiló", "Abobrinha"}};
 
                 System.out.println(
                 quitanda[1][4]
