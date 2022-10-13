@@ -42,7 +42,7 @@ public class EspecialidadeDAO {
     
     public static void excluir(Integer codigo) {
         for(Especialidade e : especialidades ) {
-         if (codigo != e.getCodigo()) {
+         if (codigo == e.getCodigo()) {
             especialidades.remove(e);
          }
             break;

@@ -6,6 +6,7 @@ package br.senai.sp.jandira.ui;
 
 import java.awt.Color;
 import java.awt.Toolkit;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -246,7 +247,9 @@ public class HomeJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonPacienteActionPerformed
 
     private void buttonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSairActionPerformed
-
+        JOptionPane.showConfirmDialog(this, "Fechando", "Kiascon", JOptionPane.OK_CANCEL_OPTION);
+        
+        dispose();
     }//GEN-LAST:event_buttonSairActionPerformed
 
     private void buttonPlanoDeSaudeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPlanoDeSaudeActionPerformed
