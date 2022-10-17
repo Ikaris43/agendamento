@@ -12,18 +12,20 @@ public class Especialidade {
 //	Construtores da classe
     public Especialidade(String nome) {
         this.nome = nome;
-        this.contador++;
-        this.codigo = contador;
+        gerarCodigo();
     }
 
     public Especialidade(String nome, String descricao) {
         this.nome = nome;
         this.descricao = descricao;
-        this.contador++;
-        this.codigo = contador;
+        gerarCodigo();
     }
 
     public Especialidade() { //Construtor Default / Padrão
+        gerarCodigo();
+    }
+
+    private void gerarCodigo() {
         this.contador++;
         this.codigo = contador;
     }
@@ -39,16 +41,12 @@ public class Especialidade {
     public void setCodigo(Integer codigo) {
         this.codigo = codigo;
     }
-    
-    
 
 //	Métodos de acesso aos atributos
     public void setNome(String nome) {
 
         if (nome.length() >= 3) {
             this.nome = nome;
-
-            
 
         } else {
             JOptionPane.showMessageDialog(null, nome + " não é um nome válido!\nDeve conter pelo menos 3 letras! ");

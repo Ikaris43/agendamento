@@ -44,8 +44,9 @@ public class EspecialidadeDAO {
         for(Especialidade e : especialidades ) {
          if (codigo == e.getCodigo()) {
             especialidades.remove(e);
-         }
             break;
+         }
+            
     }
     }
     
@@ -54,6 +55,7 @@ public class EspecialidadeDAO {
             if (correta.getCodigo() == e.getCodigo()){
                 int posicao = especialidades.indexOf(e);
                 especialidades.set(posicao, correta);
+                
             }
         }
     }
