@@ -1,23 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package br.senai.sp.jandira.ui;
 
 import br.senai.sp.jandira.dao.EspecialidadeDAO;
 import br.senai.sp.jandira.model.Especialidade;
+import br.senai.sp.jandira.model.OperacaoEnum;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author 22282204
- */
+
 public class EspecialidadesPanel extends javax.swing.JPanel {
 
     private int linha;
-    
+
     public EspecialidadesPanel() {
         initComponents();
         EspecialidadeDAO.criarListaDeEspecialidaddes();
@@ -110,15 +104,17 @@ public class EspecialidadesPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonCriarEspecialidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCriarEspecialidadeActionPerformed
-        EspecialidadeDialog especialidadeDialog = 
-                new EspecialidadeDialog(null, true);
+        EspecialidadeDialog especialidadeDialog
+                = new EspecialidadeDialog(
+                        null,
+                        true,
+                        OperacaoEnum.ADICIONAR);
         especialidadeDialog.setVisible(true);
 
         preencherTabela();
     }//GEN-LAST:event_buttonCriarEspecialidadeActionPerformed
 
     private void buttonApagarEspecialidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonApagarEspecialidadeActionPerformed
-         
 
         if (getLinha() != -1) {
             excluirEspecialidade();
@@ -133,39 +129,43 @@ public class EspecialidadesPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_buttonApagarEspecialidadeActionPerformed
 
     private void buttonEditarEspecialidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarEspecialidadeActionPerformed
-       
-         if (getLinha() != -1) {
-             editarEspecialidade();
-         } else {
-             JOptionPane.showMessageDialog(
-                     this,
-                     "Selecione uma linha",
-                     "Aviso",
-                     JOptionPane.WARNING_MESSAGE);
-         }
-       
+
+        if (getLinha() != -1) {
+            editarEspecialidade();
+        } else {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Selecione uma linha",
+                    "Aviso",
+                    JOptionPane.WARNING_MESSAGE);
+        }
+
     }//GEN-LAST:event_buttonEditarEspecialidadeActionPerformed
 
-    private void editarEspecialidade () {
-        
-        
-        Especialidade especialidade = EspecialidadeDAO.getEspecialidade(getCodigo());
-        
-        EspecialidadeDialog especialidadeDialog = 
-               new EspecialidadeDialog(null, true, especialidade);
-       especialidadeDialog.setVisible(true);
-       preencherTabela();
+    private void editarEspecialidade() {
+
+        Especialidade especialidade
+                = EspecialidadeDAO.
+                        getEspecialidade(
+                                getCodigo());
+
+        EspecialidadeDialog especialidadeDialog
+                = new EspecialidadeDialog(
+                        null,
+                        true,
+                        especialidade,
+                        OperacaoEnum.EDITAR);
+        especialidadeDialog.setVisible(true);
+        preencherTabela();
     }
-    
-    private Integer getCodigo () {
+
+    private Integer getCodigo() {
         String codigoStr = tableEspecialidades.getValueAt(getLinha(), 0).toString();
         Integer codigo = Integer.valueOf(codigoStr);
         return codigo;
     }
 
-    
     private void excluirEspecialidade() {
-        
 
         int resposta = JOptionPane.showConfirmDialog(
                 this,
@@ -179,7 +179,7 @@ public class EspecialidadesPanel extends javax.swing.JPanel {
 
             preencherTabela();
         }
-        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonApagarEspecialidade;
     private javax.swing.JButton buttonCriarEspecialidade;

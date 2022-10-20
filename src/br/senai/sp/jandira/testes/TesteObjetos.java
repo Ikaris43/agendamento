@@ -120,9 +120,9 @@ public class TesteObjetos {
             System.out.println(PlanoDeSaude.getQuantidade());
         }
 
-        PlanoDeSaude ruby2 = new PlanoDeSaude();
-        PlanoDeSaude ruby3 = new PlanoDeSaude();
-        PlanoDeSaude ruby4 = new PlanoDeSaude();
+        PlanoDeSaude ruby2 = new PlanoDeSaude("ruby");
+        PlanoDeSaude ruby3 = new PlanoDeSaude("ruby2");
+        PlanoDeSaude ruby4 = new PlanoDeSaude("ruby3");
 
 //        AgendaApp.main(args);
         System.out.println("---" + PlanoDeSaude.getQuantidade());

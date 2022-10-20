@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 public class HomeJFrame extends javax.swing.JFrame {
     
     private EspecialidadesPanel especialidadesPanel;
+    private PlanoDeSaudePanel planosDeSaudePanel;
     private final int POS_X = 10;
     private final int POS_Y = 160;
     private final int LARGURA = 880;
@@ -304,6 +305,10 @@ public class HomeJFrame extends javax.swing.JFrame {
         especialidadesPanel = new EspecialidadesPanel();
         especialidadesPanel.setBounds(POS_X, POS_Y, LARGURA, ALTURA);
         panelPlanoDeFundo.add(especialidadesPanel);
+        
+        planosDeSaudePanel = new PlanoDeSaudePanel();
+        planosDeSaudePanel.setBounds(POS_X, POS_Y, LARGURA, ALTURA);
+        panelPlanoDeFundo.add(planosDeSaudePanel);
         
     
     }
