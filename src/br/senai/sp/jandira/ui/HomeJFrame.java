@@ -248,13 +248,16 @@ public class HomeJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonPacienteActionPerformed
 
     private void buttonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSairActionPerformed
-        JOptionPane.showConfirmDialog(this, "Fechando", "Kiascon", JOptionPane.OK_CANCEL_OPTION);
-        
-        dispose();
+    dispose();
     }//GEN-LAST:event_buttonSairActionPerformed
 
     private void buttonPlanoDeSaudeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPlanoDeSaudeActionPerformed
-
+        buttonEspecialidades.setBackground(new Color (153,153,153));
+        buttonPlanoDeSaude.setBackground(new Color (102,102,102));
+        buttonHome.setBackground(new Color (153,153,153));
+        panelHome.setVisible(false);
+        especialidadesPanel.setVisible(false);
+        panelPlanoDeFundo.setVisible(true);
     }//GEN-LAST:event_buttonPlanoDeSaudeActionPerformed
 
     private void buttonAgendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAgendaActionPerformed
@@ -266,8 +269,7 @@ public class HomeJFrame extends javax.swing.JFrame {
         buttonHome.setBackground(new Color(153,153,153));
         panelHome.setVisible(false);
         especialidadesPanel.setVisible(true);
-
-        
+        buttonPlanoDeSaude.setBackground(new Color (153,153,153));        
     }//GEN-LAST:event_buttonEspecialidadesActionPerformed
 
     private void buttonHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHomeActionPerformed
@@ -275,6 +277,7 @@ public class HomeJFrame extends javax.swing.JFrame {
         buttonHome.setBackground(new Color(102,102,102));
         panelHome.setVisible(true);
         especialidadesPanel.setVisible(false);
+        buttonPlanoDeSaude.setBackground(new Color (153,153,153));
     }//GEN-LAST:event_buttonHomeActionPerformed
 
 
