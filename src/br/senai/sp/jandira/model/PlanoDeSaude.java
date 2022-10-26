@@ -1,6 +1,7 @@
 package br.senai.sp.jandira.model;
 
 import java.time.LocalDate;
+import javax.swing.JOptionPane;
 
 
 public class PlanoDeSaude {
@@ -13,31 +14,52 @@ public class PlanoDeSaude {
         private Integer codigo;
 	
 	public PlanoDeSaude() {
-            
-            
-		gerarCodigo();
+            gerarCodigo();
         }
 	
 	
 	public PlanoDeSaude(String operadora, String categoria, String numero, LocalDate validade) {
-            this.operadora = operadora;
+ 
             this.categoria = categoria;
-            this.validade = validade;
+            this.operadora = operadora;
+            this.validade = validade;           
             this.numero = numero;
 		gerarCodigo();
-		this.operadora = operadora;
+		
 	}
+        
+        private void checagemOperadora (String operadora) {
+               if (operadora.length() >= 3) {
+            this.operadora = operadora;
+            
+        } else {
+            JOptionPane.showMessageDialog(null, operadora + " não é um nome válido!\nDeve conter pelo menos 3 letras! ");
+           
+        }
+        }
+        
+         public Boolean checagemCategoria (String categoria) {
+               if (categoria.length() >= 3) {
+            this.categoria = categoria;
+               }
+            return true;
+            
+         }
+
+
+     
+        
 	
 	public void setOperadora (String operadora) {
 		this.operadora = operadora;
 	}
 	
 	public void setCategoria (String categoria) {
-		this.operadora = categoria;
+		this.categoria = categoria;
 	}
 	
 	public void setNumero (String numero) {
-		this.operadora = numero;
+		this.numero = numero;
 	}
 	
 	public void setValidade (LocalDate validade) {
@@ -59,20 +81,22 @@ public class PlanoDeSaude {
 	public LocalDate getValidade() {
 		return validade;
 	}
+
+    public static int getQuantidade() {
+        return quantidade;
+    }
 	
-	public static Integer getQuantidade() {
-		return quantidade;
-	}
 	
         private void gerarCodigo () {
-            this.quantidade++;
-            this.codigo = quantidade;
+            quantidade++;
+            codigo = quantidade;
         }
 
-        public Integer getCodigo() {
-            return codigo;
-        }
-        
+    public Integer getCodigo() {
+        return codigo;
+    }
+
+    
         
 	
 	

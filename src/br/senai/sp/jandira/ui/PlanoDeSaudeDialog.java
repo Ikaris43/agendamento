@@ -4,6 +4,7 @@ package br.senai.sp.jandira.ui;
 import br.senai.sp.jandira.dao.PlanoDeSaudeDAO;
 import br.senai.sp.jandira.model.OperacaoEnum;
 import br.senai.sp.jandira.model.PlanoDeSaude;
+import java.awt.Color;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
 
@@ -13,9 +14,56 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
     private OperacaoEnum operacao;
     private PlanoDeSaude planosDeSaude;
     
-    public PlanoDeSaudeDialog(java.awt.Frame parent, boolean modal) {
+    public PlanoDeSaudeDialog(
+            java.awt.Frame parent,
+            boolean modal, OperacaoEnum operacao) {
+        
         super(parent, modal);
         initComponents();
+        this.operacao = operacao;
+    }
+    
+    public PlanoDeSaudeDialog(
+            java.awt.Frame parent, 
+            boolean modal, PlanoDeSaude planosDeSaude, OperacaoEnum operacao) {
+        
+        super(parent, modal);
+        initComponents();
+        
+        
+        this.planosDeSaude = planosDeSaude;
+        this.operacao = operacao;
+        preecherFormulario();
+        preencherTitulo();
+        
+        
+    }
+    
+    private void preecherFormulario() {
+        
+        textFieldCodigo.setText(planosDeSaude.getCodigo().toString());
+        textFieldCategoria.setText(planosDeSaude.getCategoria());
+        textFieldNumero.setText(planosDeSaude.getNumero());
+        textFieldOperadora.setText(planosDeSaude.getOperadora());
+        textFieldValidade.setText(planosDeSaude.getValidade().toString());
+        
+    }
+    
+    private void preencherTitulo () {
+        labelTitulo.setText("Especialidades - " + operacao);
+        
+        if (operacao == OperacaoEnum.EDITAR) {
+            labelTitulo.setIcon(
+                    new javax.swing.ImageIcon(
+                                    getClass()
+                                            .getResource("/br/senai/sp/jandira/imagens/editar.png")));
+            panelFundoDoIcone.setBackground(new Color (255,204,51));
+        } else {
+            labelTitulo.setIcon(
+                    new javax.swing.ImageIcon(
+                            getClass()
+                .getResource("/br/senai/sp/jandira/imagens/adicionar-botao.png")));
+        }
     }
 
 
@@ -201,8 +249,11 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_textFieldValidadeActionPerformed
 
     private void buttonSalvarPlanoDeSaudeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvarPlanoDeSaudeActionPerformed
-        
+        if (operacao == OperacaoEnum.ADICIONAR) {
             adicionar();
+        } else {
+            editar();
+        }
        
         
     }//GEN-LAST:event_buttonSalvarPlanoDeSaudeActionPerformed
@@ -213,26 +264,32 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
 
   private void adicionar () {
         //Criar objeto especialidade
-        PlanoDeSaude novoPlanoDeSaude = new PlanoDeSaude();
-        novoPlanoDeSaude.setOperadora(textFieldOperadora.getText());
-        novoPlanoDeSaude.setCategoria(textFieldCategoria.getText());
-        novoPlanoDeSaude.setNumero(textFieldNumero.getText());
-        novoPlanoDeSaude.setValidade(LocalDate.MIN);
-        
+        PlanoDeSaude novoPlanoDeSaude = new PlanoDeSaude(
+                textFieldOperadora.getText(),
+                textFieldCategoria.getText(), 
+                textFieldNumero.getText(), 
+                LocalDate.EPOCH);
+       
         
         //gravar o objeto com o DAO 
-        PlanoDeSaudeDAO.gravar(novoPlanoDeSaude);
+        
+        if (novoPlanoDeSaude.checagemCategoria(textFieldCategoria.getText()) == true){ 
+           PlanoDeSaudeDAO.gravar(novoPlanoDeSaude); 
+        } else {
         JOptionPane.showMessageDialog(
                 this, 
                 "Plano De Saude gravada com sucesso", 
                 "Planos De Saude", 
                 JOptionPane.INFORMATION_MESSAGE);
-        dispose();
+        
+        }dispose();
     }
   
     private void editar () {
+        planosDeSaude.setOperadora(textFieldOperadora.getText());
         planosDeSaude.setCategoria(textFieldCategoria.getText());
         planosDeSaude.setNumero(textFieldNumero.getText());
+        planosDeSaude.setValidade(LocalDate.EPOCH);
         PlanoDeSaudeDAO.atualizar(planosDeSaude);
         
         JOptionPane.showMessageDialog(null, "Especialidade Atualizada!", "Aviso", JOptionPane.INFORMATION_MESSAGE);

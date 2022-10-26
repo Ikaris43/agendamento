@@ -23,8 +23,8 @@ public class PlanoDeSaudeDAO {
         for (PlanoDeSaude e : planosDeSaude) {
             dados[i][0] = e.getCodigo().toString();
             dados[i][1] = e.getOperadora();
-            dados[i][3] = e.getNumero();
-            dados[i][2] = e.getCategoria();
+            dados[i][2] = e.getNumero();
+            dados[i][3] = e.getCategoria();
             dados[i][4] = e.getValidade().toString();
             i++;
             
@@ -33,9 +33,9 @@ public class PlanoDeSaudeDAO {
         return model;
     }
     
-    public static PlanoDeSaude getPlanoDeSaude(Integer codigo) {
+    public static PlanoDeSaude getPlanoDeSaude(Integer plano) {
         for(PlanoDeSaude e : planosDeSaude) {
-            if (codigo == e.getCodigo()) {
+            if (plano == e.getCodigo()) {
                 return e;
             }
         }

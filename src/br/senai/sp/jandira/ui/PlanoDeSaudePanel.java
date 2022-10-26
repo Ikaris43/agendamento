@@ -2,14 +2,25 @@
 package br.senai.sp.jandira.ui;
 
 import br.senai.sp.jandira.dao.PlanoDeSaudeDAO;
+import br.senai.sp.jandira.model.OperacaoEnum;
+import br.senai.sp.jandira.model.PlanoDeSaude;
+import com.sun.source.tree.BreakTree;
+import javax.swing.JOptionPane;
 
 
 public class PlanoDeSaudePanel extends javax.swing.JPanel {
 
+    private int linha;
+    
     public PlanoDeSaudePanel() {
         initComponents();
         PlanoDeSaudeDAO.criarListaDePlanosDeSaude();
         preencherTabela();
+    }
+    
+    private int getLinha() {
+        linha = tablePlanosDeSaude.getSelectedRow();
+        return linha;
     }
 
  
@@ -92,22 +103,75 @@ public class PlanoDeSaudePanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonApagarPlanoDeSaudeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonApagarPlanoDeSaudeActionPerformed
-
+    if (getLinha() != -1) {
+             excluirPlanoDeSaude();
+        } else {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Selecione uma linha!",
+                    "Aviso",
+                    JOptionPane.WARNING_MESSAGE);
+        }
        
     }//GEN-LAST:event_buttonApagarPlanoDeSaudeActionPerformed
 
     private void buttonEditarPlanoDeSaudeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarPlanoDeSaudeActionPerformed
-
-      
+        
+      if (getLinha() != -1){
+          editarPlanoDeSaude();
+      } else {
+          JOptionPane.showMessageDialog(
+                    this,
+                    "Selecione uma linha!",
+                    "Aviso",
+                    JOptionPane.WARNING_MESSAGE);
+          
+      }
     }//GEN-LAST:event_buttonEditarPlanoDeSaudeActionPerformed
 
     private void buttonCriarPlanoDeSaudeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCriarPlanoDeSaudeActionPerformed
-        PlanoDeSaudeDialog planoDeSaudeDialog = new PlanoDeSaudeDialog(null, true);
+        PlanoDeSaudeDialog planoDeSaudeDialog = new PlanoDeSaudeDialog(null, true, OperacaoEnum.ADICIONAR);
         planoDeSaudeDialog.setVisible(true);
         preencherTabela();
     }//GEN-LAST:event_buttonCriarPlanoDeSaudeActionPerformed
 
+    private void editarPlanoDeSaude() {
+        PlanoDeSaude planoDeSaude
+                = PlanoDeSaudeDAO.getPlanoDeSaude(getCodigo());
+                                
 
+        PlanoDeSaudeDialog planoDeSaudeDialog
+                = new PlanoDeSaudeDialog(
+                        null,
+                        true,
+                        planoDeSaude,
+                        OperacaoEnum.EDITAR);
+        planoDeSaudeDialog.setVisible(true);
+        preencherTabela();
+    }
+    
+    private Integer getCodigo() {
+        String codigoStr = tablePlanosDeSaude.getValueAt(getLinha(), 0).toString();
+        Integer codigo = Integer.valueOf(codigoStr);
+        return codigo;
+    }
+    
+    private void excluirPlanoDeSaude() {
+    int resposta = JOptionPane.showConfirmDialog(
+                this,
+                "Você confirma a exclusão? ",
+                "Atenção",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+
+        if (resposta == 0) {
+            PlanoDeSaudeDAO.excluir(getCodigo());
+
+            preencherTabela();
+        }
+}
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonApagarPlanoDeSaude;
     private javax.swing.JButton buttonCriarPlanoDeSaude;

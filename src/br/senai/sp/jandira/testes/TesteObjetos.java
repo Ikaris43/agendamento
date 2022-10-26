@@ -105,9 +105,9 @@ public class TesteObjetos {
         }
 
 //		Criar 3 planos de saude, armazenar em um arraylist e exibir o nome da operadora de cada um deles
-        PlanoDeSaude ruby = new PlanoDeSaude("Amil");
-        PlanoDeSaude saphire = new PlanoDeSaude("Bradesco");
-        PlanoDeSaude pearl = new PlanoDeSaude("Notredame");
+        PlanoDeSaude ruby = new PlanoDeSaude();
+        PlanoDeSaude saphire = new PlanoDeSaude();
+        PlanoDeSaude pearl = new PlanoDeSaude();
 
         ArrayList<PlanoDeSaude> planosDeSaude = new ArrayList<>();
         planosDeSaude.add(pearl);
@@ -120,9 +120,9 @@ public class TesteObjetos {
             System.out.println(PlanoDeSaude.getQuantidade());
         }
 
-        PlanoDeSaude ruby2 = new PlanoDeSaude("ruby");
-        PlanoDeSaude ruby3 = new PlanoDeSaude("ruby2");
-        PlanoDeSaude ruby4 = new PlanoDeSaude("ruby3");
+        PlanoDeSaude ruby2 = new PlanoDeSaude();
+        PlanoDeSaude ruby3 = new PlanoDeSaude();
+        PlanoDeSaude ruby4 = new PlanoDeSaude();
 
 //        AgendaApp.main(args);
         System.out.println("---" + PlanoDeSaude.getQuantidade());
