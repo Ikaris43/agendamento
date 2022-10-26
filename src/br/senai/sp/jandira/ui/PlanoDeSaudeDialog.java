@@ -282,6 +282,7 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
                 "Planos De Saude", 
                 JOptionPane.INFORMATION_MESSAGE);
         
+        
         }dispose();
     }
   
