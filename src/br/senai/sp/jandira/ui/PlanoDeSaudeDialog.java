@@ -13,6 +13,9 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
 
     private OperacaoEnum operacao;
     private PlanoDeSaude planosDeSaude;
+    private Boolean check;
+    PlanoDeSaude novoPlanoDeSaude = new PlanoDeSaude();
+    private LocalDate vall = LocalDate.of(2022, 10, 20);
     
     public PlanoDeSaudeDialog(
             java.awt.Frame parent,
@@ -262,29 +265,36 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldOperadoraActionPerformed
 
-  private void adicionar () {
-        //Criar objeto especialidade
-        PlanoDeSaude novoPlanoDeSaude = new PlanoDeSaude(
-                textFieldOperadora.getText(),
-                textFieldCategoria.getText(), 
-                textFieldNumero.getText(), 
-                LocalDate.EPOCH);
-       
-        
-        //gravar o objeto com o DAO 
-        
-        if (novoPlanoDeSaude.checagemCategoria(textFieldCategoria.getText()) == true){ 
-           PlanoDeSaudeDAO.gravar(novoPlanoDeSaude); 
-        } else {
-        JOptionPane.showMessageDialog(
-                this, 
-                "Plano De Saude gravada com sucesso", 
-                "Planos De Saude", 
-                JOptionPane.INFORMATION_MESSAGE);
+    private void adicionar () {
         
         
-        }dispose();
+        novoPlanoDeSaude.setOperadora(textFieldOperadora.getText());
+        novoPlanoDeSaude.setCategoria(textFieldCategoria.getText());
+        novoPlanoDeSaude.setNumero(textFieldNumero.getText());
+        novoPlanoDeSaude.setValidade(vall);
+        
+         
+        
+        if (novoPlanoDeSaude.GetCheckFalso() == false) {
+            
+            
+        }
+        if (novoPlanoDeSaude.getCheckVerdadeiro() == true) {
+             
+             PlanoDeSaudeDAO.gravar(novoPlanoDeSaude);
+        }
+   
+        dispose();
     }
+    
+  
+  
+   
+        
+  
+  
+  
+  
   
     private void editar () {
         planosDeSaude.setOperadora(textFieldOperadora.getText());

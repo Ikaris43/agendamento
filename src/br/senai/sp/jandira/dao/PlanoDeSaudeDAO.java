@@ -16,7 +16,7 @@ public class PlanoDeSaudeDAO {
     
     public static DefaultTableModel getPlanosDeSaudeModel () {
         
-        String[] titulos = {"Quantidade", "Operadora", "Número", "Categoria", "Validade"};
+        String[] titulos = {"Código", "Operadora", "Número", "Categoria", "Validade"};
         String[][] dados = new String[planosDeSaude.size()][5];
         
         int i = 0;
@@ -67,10 +67,10 @@ public class PlanoDeSaudeDAO {
     }
     
     public static void criarListaDePlanosDeSaude(){
-        PlanoDeSaude e1 = new PlanoDeSaude("Claro1", "Gold1", "150",LocalDate.of(2022, 10, 25));
-        PlanoDeSaude e2 = new PlanoDeSaude("Claro2", "Gold2", "151",LocalDate.of(2022, 10, 25));
-        PlanoDeSaude e3 = new PlanoDeSaude("Claro3", "Gold3", "152",LocalDate.of(2022, 10, 25));
-        PlanoDeSaude e4 = new PlanoDeSaude("Claro4", "Gold4", "153",LocalDate.of(2022, 10, 25));
+        PlanoDeSaude e1 = new PlanoDeSaude("Claro1", "Gold1", "A-150",LocalDate.of(2022, 10, 25));
+        PlanoDeSaude e2 = new PlanoDeSaude("Claro2", "Gold2", "A-151",LocalDate.of(2022, 10, 25));
+        PlanoDeSaude e3 = new PlanoDeSaude("Claro3", "Gold3", "A-152",LocalDate.of(2022, 10, 25));
+        PlanoDeSaude e4 = new PlanoDeSaude("Claro4", "Gold4", "A-153",LocalDate.of(2022, 10, 25));
         
         
         planosDeSaude.add(e1);

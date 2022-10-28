@@ -1,6 +1,6 @@
 package br.senai.sp.jandira.model;
 
-public enum Estados {
+public enum EstadosEnum {
 
 	SAO_PAULO, RIO_DE_JANEIRO, MINAS_GERAIS,
 	MATO_GROSSO, BAHIA, PERNAMBUCO, SERGIPE,
