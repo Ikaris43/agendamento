@@ -66,10 +66,10 @@ public class EspecialidadeDAO {
     
     //Criar uma lista inicial de especialidades
     public static void criarListaDeEspecialidaddes(){
-        Especialidade e1 = new Especialidade("Geral", "Generalizando");
-        Especialidade e2 = new Especialidade("Geral2", "Generalizando2");
-        Especialidade e3 = new Especialidade("Geral3", "Generalizando3");
-        Especialidade e4 = new Especialidade("Geral4", "Generalizando4");
+        Especialidade e1 = new Especialidade("Cardiologia", "Área da saúde responsável pelo coração");
+        Especialidade e2 = new Especialidade("Clinico Geral", "Área responsável pelo tratamento geral da saúde");
+        Especialidade e3 = new Especialidade("Oftalmologia", "Área responsável pelo cuidados com os olhos");
+        Especialidade e4 = new Especialidade("Dermatologia", "Área da medicina que estuda as doenças da pele, dos cabelos e das unhas");
         
         especialidades.add(e1);
         especialidades.add(e2);

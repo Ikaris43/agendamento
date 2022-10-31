@@ -6,6 +6,7 @@ import br.senai.sp.jandira.model.OperacaoEnum;
 import br.senai.sp.jandira.model.PlanoDeSaude;
 import java.awt.Color;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 
 
@@ -15,7 +16,8 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
     private PlanoDeSaude planosDeSaude;
     private Boolean check;
     PlanoDeSaude novoPlanoDeSaude = new PlanoDeSaude();
-    private LocalDate vall = LocalDate.of(2022, 10, 20);
+    DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    
     
     public PlanoDeSaudeDialog(
             java.awt.Frame parent,
@@ -48,7 +50,7 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
         textFieldCategoria.setText(planosDeSaude.getCategoria());
         textFieldNumero.setText(planosDeSaude.getNumero());
         textFieldOperadora.setText(planosDeSaude.getOperadora());
-        textFieldValidade.setText(planosDeSaude.getValidade().toString());
+        textFieldValidade.setText(planosDeSaude.getValidade().format(formato));
         
     }
     
@@ -181,7 +183,6 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
 
         textFieldValidade.setBackground(new java.awt.Color(102, 102, 102));
         textFieldValidade.setForeground(new java.awt.Color(204, 204, 204));
-        textFieldValidade.setText("00/00/0000");
         textFieldValidade.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         textFieldValidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -205,6 +206,11 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
         buttonCancelarPlanoDeSaude.setBackground(new java.awt.Color(255, 51, 51));
         buttonCancelarPlanoDeSaude.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/contrato.png"))); // NOI18N
         buttonCancelarPlanoDeSaude.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        buttonCancelarPlanoDeSaude.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCancelarPlanoDeSaudeActionPerformed(evt);
+            }
+        });
         panelDetalhesDoPlanoDeSaude.add(buttonCancelarPlanoDeSaude);
         buttonCancelarPlanoDeSaude.setBounds(620, 330, 50, 40);
 
@@ -252,11 +258,29 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_textFieldValidadeActionPerformed
 
     private void buttonSalvarPlanoDeSaudeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvarPlanoDeSaudeActionPerformed
-        if (operacao == OperacaoEnum.ADICIONAR) {
+        if (textFieldValidade.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "A Validade não pode estar vazia!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+            textFieldValidade.grabFocus();
+        
+        } else if (textFieldCategoria.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "A Categoria não pode estar vazia!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+            textFieldCategoria.grabFocus();
+            
+        } else if (textFieldNumero.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "O Numero não pode estar vazio!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+            textFieldNumero.grabFocus();
+            
+        } else if (textFieldOperadora.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "A Operadora não pode estar vazia!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+            textFieldOperadora.grabFocus();
+            
+        } else { 
+            if (operacao == OperacaoEnum.ADICIONAR) {
             adicionar();
         } else {
             editar();
         }
+    }
        
         
     }//GEN-LAST:event_buttonSalvarPlanoDeSaudeActionPerformed
@@ -265,13 +289,18 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldOperadoraActionPerformed
 
+    private void buttonCancelarPlanoDeSaudeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarPlanoDeSaudeActionPerformed
+        dispose();
+    }//GEN-LAST:event_buttonCancelarPlanoDeSaudeActionPerformed
+
     private void adicionar () {
         
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         
         novoPlanoDeSaude.setOperadora(textFieldOperadora.getText());
         novoPlanoDeSaude.setCategoria(textFieldCategoria.getText());
         novoPlanoDeSaude.setNumero(textFieldNumero.getText());
-        novoPlanoDeSaude.setValidade(vall);
+        novoPlanoDeSaude.setValidade(LocalDate.parse(textFieldValidade.getText(), formato));
         
          
         
@@ -297,10 +326,18 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
   
   
     private void editar () {
+        
+       
+        
+        String dados = textFieldValidade.getText();
+        LocalDate formatacao = LocalDate.parse(dados, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        String dia = formatacao.minusDays(1).format(formato);
+        
         planosDeSaude.setOperadora(textFieldOperadora.getText());
         planosDeSaude.setCategoria(textFieldCategoria.getText());
         planosDeSaude.setNumero(textFieldNumero.getText());
-        planosDeSaude.setValidade(LocalDate.EPOCH);
+        planosDeSaude.setValidade(formatacao);
+        
         PlanoDeSaudeDAO.atualizar(planosDeSaude);
         
         JOptionPane.showMessageDialog(null, "Especialidade Atualizada!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
