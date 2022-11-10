@@ -116,6 +116,22 @@ public class PlanoDeSaude {
     public Integer getCodigo() {
         return codigo;
     }
+    
+    public String getPlanoDeSaudeFormatadoComPontoEVirgula () {
+        return this.codigo.toString() + ";" + this.operadora + ";" + this.categoria + ";" + this.numero + ";" + this.validade.toString();
+    }
+    
+    public PlanoDeSaude (String operadora, String categoria, String numero, LocalDate validade, Integer codigo) {
+ 
+            this.categoria = categoria;
+            this.operadora = operadora;
+            this.validade = validade;           
+            this.numero = numero;
+            this.quantidade = codigo;
+            
+		
+	}
+    
 
     
         

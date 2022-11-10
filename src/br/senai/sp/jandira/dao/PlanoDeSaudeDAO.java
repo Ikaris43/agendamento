@@ -1,13 +1,25 @@
 package br.senai.sp.jandira.dao;
 
 import br.senai.sp.jandira.model.PlanoDeSaude;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.DateFormatter;
 
 
 public class PlanoDeSaudeDAO {
+    
+    private static final String URL = "C:\\Users\\22282204\\Java\\planoDeSaude.txt";
+    private static final Path PATH = Paths.get(URL);
     
     private static ArrayList<PlanoDeSaude> planosDeSaude = new ArrayList<>();
     
@@ -56,6 +68,17 @@ public class PlanoDeSaudeDAO {
        
        public static void gravar(PlanoDeSaude e) {
         planosDeSaude.add(e);
+        
+        try {
+            BufferedWriter escritor = Files.newBufferedWriter(PATH, StandardOpenOption.APPEND, StandardOpenOption.WRITE);
+            
+            escritor.write(e.getPlanoDeSaudeFormatadoComPontoEVirgula());
+            escritor.newLine();
+            escritor.close();
+            
+        } catch (IOException error) {
+            JOptionPane.showMessageDialog(null, "Erro!");
+        }
     }
        
     public static void atualizar (PlanoDeSaude correta){
@@ -69,16 +92,52 @@ public class PlanoDeSaudeDAO {
     }
     
     public static void criarListaDePlanosDeSaude(){
-        PlanoDeSaude e1 = new PlanoDeSaude("Claro1", "Gold1", "A-150",LocalDate.of(2022, 10, 25));
-        PlanoDeSaude e2 = new PlanoDeSaude("Claro2", "Gold2", "A-151",LocalDate.of(2022, 10, 25));
-        PlanoDeSaude e3 = new PlanoDeSaude("Claro3", "Gold3", "A-152",LocalDate.of(2022, 10, 25));
-        PlanoDeSaude e4 = new PlanoDeSaude("Claro4", "Gold4", "A-153",LocalDate.of(2022, 10, 25));
         
+        try {
+            BufferedReader leitor = Files.newBufferedReader(PATH);
+            
+            String linha = leitor.readLine();
+            
+            while (linha != null) {
+                
+             
+                
+                String[] vetor = linha.split(";");
+                
+                String[] dataCortada = vetor[4].split("-");
+                String dia = dataCortada[2];
+                String mes = dataCortada[1];
+                String ano = dataCortada[0];
+                
+                String dataFormatada = dia + mes + ano;
+                
+                DateTimeFormatter formato = DateTimeFormatter.ofPattern(dataFormatada);
+                
+              
+                
+                
+                
+                PlanoDeSaude e = new PlanoDeSaude(
+                        vetor[1],
+                        vetor[2],
+                        vetor[3],
+                        LocalDate.parse(dataFormatada),
+                        Integer.valueOf(vetor[0]));
+                
+                
+               
+           
+                planosDeSaude.add(e);
+                
+                linha = leitor.readLine();
+                
+                leitor.close();
+            }
+            
+        } catch (IOException erro) {
+            JOptionPane.showMessageDialog(null, "Erro 3!");
+        }
         
-        planosDeSaude.add(e1);
-        planosDeSaude.add(e2);
-        planosDeSaude.add(e3);
-        planosDeSaude.add(e4);
     }
     
     

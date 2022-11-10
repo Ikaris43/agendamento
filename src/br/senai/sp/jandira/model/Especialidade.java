@@ -24,6 +24,13 @@ public class Especialidade {
     public Especialidade() { //Construtor Default / Padrão
         gerarCodigo();
     }
+    
+    public Especialidade(String nome, String descricao, Integer codigo) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.codigo = codigo;
+        this.contador = codigo;
+    }
 
     private void gerarCodigo() {
         this.contador++;
@@ -68,6 +75,10 @@ public class Especialidade {
 
     public String getDescricao() {
         return this.descricao;
+    }
+    
+    public String getEspecialidadeSeparadaPorPontoEVirgula () {
+        return this.codigo + ";" + this.nome + ";" + this.descricao;
     }
 
 }
