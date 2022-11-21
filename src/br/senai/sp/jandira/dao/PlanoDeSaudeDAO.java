@@ -118,7 +118,7 @@ public class PlanoDeSaudeDAO {
                         vetor[1],
                         vetor[2],
                         vetor[3],
-                        LocalDate.parse(vetor[4]),
+                        LocalDate.EPOCH,
                         Integer.valueOf(vetor[0]));
 
                 planosDeSaude.add(e);

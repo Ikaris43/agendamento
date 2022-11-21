@@ -17,6 +17,7 @@ public class HomeJFrame extends javax.swing.JFrame {
     
     private EspecialidadesPanel especialidadesPanel;
     private PlanoDeSaudePanel planosDeSaudePanel;
+    private MedicoPanel medicoPanel;
     private final int POS_X = 10;
     private final int POS_Y = 160;
     private final int LARGURA = 880;
@@ -188,6 +189,11 @@ public class HomeJFrame extends javax.swing.JFrame {
         buttonMedico.setText("Médico");
         buttonMedico.setToolTipText("Cadastro De Médico");
         buttonMedico.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        buttonMedico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonMedicoActionPerformed(evt);
+            }
+        });
         getContentPane().add(buttonMedico);
         buttonMedico.setBounds(330, 100, 120, 42);
 
@@ -255,9 +261,11 @@ public class HomeJFrame extends javax.swing.JFrame {
         buttonEspecialidades.setBackground(new Color (153,153,153));
         buttonPlanoDeSaude.setBackground(new Color (102,102,102));
         buttonHome.setBackground(new Color (153,153,153));
+        buttonMedico.setBackground(new Color(153, 153, 153));
         panelHome.setVisible(false);
         especialidadesPanel.setVisible(false);
-        panelPlanoDeFundo.setVisible(true);
+        medicoPanel.setVisible(false);
+        planosDeSaudePanel.setVisible(true);
     }//GEN-LAST:event_buttonPlanoDeSaudeActionPerformed
 
     private void buttonAgendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAgendaActionPerformed
@@ -267,18 +275,39 @@ public class HomeJFrame extends javax.swing.JFrame {
     private void buttonEspecialidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEspecialidadesActionPerformed
         buttonEspecialidades.setBackground(new Color(102,102,102));
         buttonHome.setBackground(new Color(153,153,153));
+        buttonPlanoDeSaude.setBackground(new Color (153,153,153)); 
+        buttonMedico.setBackground(new Color(153, 153, 153));
+        
         panelHome.setVisible(false);
         especialidadesPanel.setVisible(true);
-        buttonPlanoDeSaude.setBackground(new Color (153,153,153));        
+        medicoPanel.setVisible(false);
+        planosDeSaudePanel.setVisible(false);
+               
     }//GEN-LAST:event_buttonEspecialidadesActionPerformed
 
     private void buttonHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHomeActionPerformed
         buttonEspecialidades.setBackground(new Color(153,153,153));
         buttonHome.setBackground(new Color(102,102,102));
+        buttonPlanoDeSaude.setBackground(new Color (153,153,153));
+        buttonMedico.setBackground(new Color (153, 153, 153));
+        
         panelHome.setVisible(true);
         especialidadesPanel.setVisible(false);
-        buttonPlanoDeSaude.setBackground(new Color (153,153,153));
+        planosDeSaudePanel.setVisible(false);
+        medicoPanel.setVisible(false);
+        
     }//GEN-LAST:event_buttonHomeActionPerformed
+
+    private void buttonMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMedicoActionPerformed
+        buttonMedico.setBackground(new Color(102, 102, 102));
+        buttonEspecialidades.setBackground(new Color(153,153,153));
+        buttonHome.setBackground(new Color(153,153,153));
+        buttonPlanoDeSaude.setBackground(new Color (153,153,153));
+        panelHome.setVisible(false);
+        especialidadesPanel.setVisible(false);
+        planosDeSaudePanel.setVisible(false);
+        medicoPanel.setVisible(true);
+    }//GEN-LAST:event_buttonMedicoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -313,6 +342,10 @@ public class HomeJFrame extends javax.swing.JFrame {
         planosDeSaudePanel.setBounds(POS_X, POS_Y, LARGURA, ALTURA);
         panelPlanoDeFundo.add(planosDeSaudePanel);
         
+        
+        medicoPanel = new MedicoPanel();
+        medicoPanel.setBounds(POS_X, POS_Y, LARGURA, ALTURA);
+        panelPlanoDeFundo.add(medicoPanel);
     
     }
 
