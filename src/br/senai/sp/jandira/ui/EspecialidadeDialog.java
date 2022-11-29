@@ -13,7 +13,8 @@ public class EspecialidadeDialog extends javax.swing.JDialog {
     
     public EspecialidadeDialog(
             java.awt.Frame parent, 
-            boolean modal, OperacaoEnum operacao) {
+            boolean modal, 
+            OperacaoEnum operacao) {
         
         super(parent, modal);
         initComponents();

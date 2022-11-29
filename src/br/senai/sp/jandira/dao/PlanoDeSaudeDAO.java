@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.time.LocalDate;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -105,12 +106,7 @@ public class PlanoDeSaudeDAO {
 
                 String[] vetor = linha.split(";");
 
-                String[] dataCortada = vetor[4].split("-");
-                String dia = dataCortada[2];
-                String mes = dataCortada[1];
-                String ano = dataCortada[0];
-
-                String dataFormatada = dia + "/" + mes + "/" + ano;
+                String [] data = vetor[4].split("-");
 
                 
 
@@ -118,7 +114,7 @@ public class PlanoDeSaudeDAO {
                         vetor[1],
                         vetor[2],
                         vetor[3],
-                        LocalDate.EPOCH,
+                        LocalDate.of(Integer.parseInt(data[0]), Integer.parseInt(data[1]), Integer.parseInt(data[2])),
                         Integer.valueOf(vetor[0]));
 
                 planosDeSaude.add(e);

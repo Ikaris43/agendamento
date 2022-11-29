@@ -9,6 +9,10 @@ public class Especialidade {
     private String nome;
     private String descricao;
 
+    public Especialidade() { //Construtor Default / Padrão
+        gerarCodigo();
+    }
+
 //	Construtores da classe
     public Especialidade(String nome) {
         this.nome = nome;
@@ -21,10 +25,6 @@ public class Especialidade {
         gerarCodigo();
     }
 
-    public Especialidade() { //Construtor Default / Padrão
-        gerarCodigo();
-    }
-    
     public Especialidade(String nome, String descricao, Integer codigo) {
         this.nome = nome;
         this.descricao = descricao;
@@ -76,8 +76,8 @@ public class Especialidade {
     public String getDescricao() {
         return this.descricao;
     }
-    
-    public String getEspecialidadeSeparadaPorPontoEVirgula () {
+
+    public String getEspecialidadeSeparadaPorPontoEVirgula() {
         return this.codigo + ";" + this.nome + ";" + this.descricao;
     }
 

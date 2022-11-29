@@ -2,6 +2,7 @@
 package br.senai.sp.jandira.ui;
 
 import br.senai.sp.jandira.dao.MedicoDAO;
+import br.senai.sp.jandira.model.OperacaoEnum;
 import javax.swing.JTable;
 
 public class MedicoPanel extends javax.swing.JPanel {
@@ -9,6 +10,7 @@ public class MedicoPanel extends javax.swing.JPanel {
   
     public MedicoPanel() {
         initComponents();
+        MedicoDAO.criarListaDeMedicos();
         preencherTabelaMedico();
     }
 
@@ -94,6 +96,9 @@ public class MedicoPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_buttonEditarMedicoActionPerformed
 
     private void buttonAdicionarMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdicionarMedicoActionPerformed
+        MedicoDialog medicoDialog = new MedicoDialog(null, true, OperacaoEnum.ADICIONAR);
+        medicoDialog.setVisible(true);
+        preencherTabelaMedico();
         
     }//GEN-LAST:event_buttonAdicionarMedicoActionPerformed
 
