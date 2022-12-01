@@ -23,11 +23,9 @@ public class PlanoDeSaudeDAO {
     private static final Path PATH = Paths.get(URL);
 
     private static ArrayList<PlanoDeSaude> planosDeSaude = new ArrayList<>();
-    
+  
 
-    
-
-    public static ArrayList<PlanoDeSaude> getPlanosDeSaude() {
+    public static ArrayList<PlanoDeSaude> getPlanosDeSaude() {        
         return planosDeSaude;
     }
 
@@ -107,8 +105,6 @@ public class PlanoDeSaudeDAO {
                 String[] vetor = linha.split(";");
 
                 String [] data = vetor[4].split("-");
-
-                
 
                 PlanoDeSaude e = new PlanoDeSaude(
                         vetor[1],

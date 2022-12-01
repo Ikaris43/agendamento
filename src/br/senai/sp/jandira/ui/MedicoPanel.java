@@ -100,6 +100,7 @@ public class MedicoPanel extends javax.swing.JPanel {
         medicoDialog.setVisible(true);
         preencherTabelaMedico();
         
+        
     }//GEN-LAST:event_buttonAdicionarMedicoActionPerformed
 
     private void buttonApagarMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonApagarMedicoActionPerformed
@@ -122,8 +123,9 @@ public class MedicoPanel extends javax.swing.JPanel {
         
         tabelaDeMedicosTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         tabelaDeMedicosTable.getColumnModel().getColumn(0).setPreferredWidth(100);
-        tabelaDeMedicosTable.getColumnModel().getColumn(1).setPreferredWidth(250);
-        tabelaDeMedicosTable.getColumnModel().getColumn(2).setPreferredWidth(400);
+        tabelaDeMedicosTable.getColumnModel().getColumn(1).setPreferredWidth(100);
+        tabelaDeMedicosTable.getColumnModel().getColumn(2).setPreferredWidth(520);
+        tabelaDeMedicosTable.getColumnModel().getColumn(3).setPreferredWidth(100);
     }
 
     private void preencherTabelaMedico () {

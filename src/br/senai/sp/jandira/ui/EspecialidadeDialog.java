@@ -82,6 +82,7 @@ public class EspecialidadeDialog extends javax.swing.JDialog {
         textFieldDescricaoDaEspecialidade = new javax.swing.JTextField();
         buttonSalvar = new javax.swing.JButton();
         buttonCancelar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -192,6 +193,8 @@ public class EspecialidadeDialog extends javax.swing.JDialog {
         });
         jPanel2.add(buttonCancelar);
         buttonCancelar.setBounds(610, 330, 50, 40);
+        jPanel2.add(jScrollPane1);
+        jScrollPane1.setBounds(440, 40, 150, 120);
 
         panelPlanoDeFundo.add(jPanel2);
         jPanel2.setBounds(10, 110, 810, 400);
@@ -261,6 +264,7 @@ public class EspecialidadeDialog extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelTitulo;
     private javax.swing.JPanel panelPlanoDeFundo;
     private javax.swing.JTextField textFieldCodigo;

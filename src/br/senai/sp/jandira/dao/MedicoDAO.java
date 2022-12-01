@@ -11,6 +11,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -49,6 +51,7 @@ public class MedicoDAO {
     }
 
     public static void gravar(Medico e) {
+        
        medicos.add(e);
 
         try {
@@ -73,8 +76,16 @@ public class MedicoDAO {
             while (linha != null) {
 
                 String[] vetor = linha.split(";");
+                
+                String [] data = vetor[5].split("-");
 
-                Medico e = new Medico(vetor[1], vetor[2], vetor[4], Integer.valueOf(vetor[0]));
+                Medico e = new Medico(vetor[1],
+                        vetor[2],
+                        vetor[4],
+                        Integer.valueOf(vetor[0]),
+                        LocalDate.of(Integer.parseInt(data[0]),
+                                Integer.parseInt(data[1]),
+                                Integer.parseInt(data[2])));
 
                 
 
