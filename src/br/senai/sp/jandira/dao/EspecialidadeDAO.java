@@ -12,6 +12,7 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -126,6 +127,15 @@ public class EspecialidadeDAO {
             JOptionPane.showMessageDialog(null, "Ocorreu um erro");
         }
 
+    }
+    
+    public static DefaultListModel<Especialidade> getListaDeEspecialidades() {
+        DefaultListModel<Especialidade> listaDeEspecialidades = new DefaultListModel<>();
+        for(Especialidade i: getEspecialidades()) {
+            listaDeEspecialidades.addElement(i);
+            listaDeEspecialidades.toString();
+        }
+        return listaDeEspecialidades;
     }
 
     //Criar uma lista inicial de especialidades

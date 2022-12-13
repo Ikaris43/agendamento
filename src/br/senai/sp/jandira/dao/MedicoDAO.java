@@ -65,6 +65,7 @@ public class MedicoDAO {
             JOptionPane.showMessageDialog(null, "Erro!");
         }
     }
+    
 
     public static void criarListaDeMedicos() {
        

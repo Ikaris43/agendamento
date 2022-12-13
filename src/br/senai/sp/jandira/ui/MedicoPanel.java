@@ -2,12 +2,12 @@
 package br.senai.sp.jandira.ui;
 
 import br.senai.sp.jandira.dao.MedicoDAO;
+import br.senai.sp.jandira.model.Medico;
 import br.senai.sp.jandira.model.OperacaoEnum;
 import javax.swing.JTable;
 
 public class MedicoPanel extends javax.swing.JPanel {
-
-  
+ 
     public MedicoPanel() {
         initComponents();
         MedicoDAO.criarListaDeMedicos();
